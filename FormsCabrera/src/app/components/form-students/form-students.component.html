@@ -1,0 +1,95 @@
+<div class="form-container">
+
+    <h1 class="text-bg-primary"> REGISTRO ESTUDIANTE</h1>
+    <form [formGroup]="frmStudent" (ngSubmit)="submit()" class="row g-3 ">
+        <div class="col-md-6">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" formControlName="name">
+
+            <div class="error" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                * Campo obligatorio
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" formControlName="surname">
+            <div class="error" *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+                * Campo obligatorio
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Tipo Documento</label>
+            <select class="form-select" formControlName="documentType">
+            <option>Documento Nacional de Identidad</option>
+            <option>Libreta Civica</option>
+            <option>Pasaporte</option>
+          </select>
+
+
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Nro. Documento</label>
+            <input type="text" class="form-control" formControlName="document">
+
+            <div class="error" *ngIf="document?.invalid && (document?.dirty || document?.touched)">
+                <div *ngIf="document?.errors?.['required']">
+                    *Campo obligatorio
+                </div>
+                <div *ngIf="document?.errors?.['pattern']">
+                    *Solo se deben ingresar números
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Genero</label>
+            <select class="form-select" formControlName="gender">
+    
+            <option value="1">Femenino</option>
+            <option value="2">Masculino</option>
+            <option value="3">Otro</option>
+          </select>
+
+            <div class="error" *ngIf="gender?.invalid && (gender?.dirty || gender?.touched)">
+                * Campo obligatorio
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Correo Electronico</label>
+            <input type="text" class="form-control" formControlName="adress">
+
+            <div class="error" *ngIf="adress?.invalid && (adress?.dirty || adress?.touched)">
+                <div *ngIf="adress?.errors?.['required']">
+                    * Campo obligatorio
+                </div>
+                <div *ngIf="adress?.errors?.['pattern']">
+                    * No cumple con el formato correspondiente
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">Telefono</label>
+            <input type="text" class="form-control" formControlName="phoneNumber">
+
+            <div class="error" *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
+                <div *ngIf="phoneNumber?.errors?.['required']">
+                    * Campo obligatorio
+                </div>
+                <div *ngIf="phoneNumber?.errors?.['minlength'] || phoneNumber?.errors?.['maxlength']">
+                    * Debe tener un minimo de 7 caracteres y un maximo de 10 caracteres
+                </div>
+                <div *ngIf="phoneNumber?.errors?.['pattern']">
+                    * Solo se deben ingresar números
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>
